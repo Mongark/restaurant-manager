@@ -37,7 +37,7 @@ export const Layout = ({ children }: ILayoutProps) => (
         <Drawer />
         <Main>{children}</Main>
       </InnerContainer>
-      <Footer>Footer</Footer>
+      { /* <Footer>Footer</Footer> */ }
     </OuterContainer>
   </DrawerContextProvider>
 );
