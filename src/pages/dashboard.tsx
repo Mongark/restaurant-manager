@@ -1,5 +1,5 @@
 import { Circle } from "@mui/icons-material";
-import { Card, Grid, TextField, Typography } from "@mui/material";
+import { Card, Grid, Paper, TextField, Typography } from "@mui/material";
 
 interface TableInterface {
     name: string;
@@ -61,12 +61,19 @@ export const DashboardPage = () => {
 
     return(
         <div style={{ padding: "48px" }}>
-            <Typography style={{ marginBottom: "18px" }} variant="h3">Dashboard</Typography>
+            <div style={{ display: "flex", flexDirection: "column"}}>
+                <Typography style={{ marginBottom: "18px" }} variant="h3">Visão Geral</Typography>
 
-            <div>
-                <TextField label="Mesa" style={{ marginBottom: "24px", marginRight: "24px" }}></TextField>
-                <TextField label="Comanda" style={{ marginBottom: "24px" }}></TextField>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <div style={{ marginRight: "40px" }}>
+                        <TextField label="Mesa" style={{ marginBottom: "24px", marginRight: "24px" }}></TextField>
+                        <TextField label="Comanda" style={{ marginBottom: "24px" }}></TextField>
+                    </div>
+
+                <Typography variant="h5">Mesas ocupadas: 5/8</Typography>
+                </div>
             </div>
+
 
             <Grid container gap="32px">
                 {tables.map((table) => {
