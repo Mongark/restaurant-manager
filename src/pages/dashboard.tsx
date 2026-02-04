@@ -1,5 +1,20 @@
 import { Circle } from "@mui/icons-material";
-import { Card, Grid, Paper, TextField, Typography } from "@mui/material";
+import { 
+    Button, 
+    Card, 
+    FormControl, 
+    Grid, 
+    MenuItem, 
+    Select, 
+    Table, 
+    TableBody, 
+    TableCell, 
+    TableRow, 
+    TextField, 
+    Typography 
+} from "@mui/material";
+
+import TableContainer from '@mui/material/TableContainer';
 
 interface TableInterface {
     name: string;
@@ -13,11 +28,61 @@ const TableComponent = (props: TableInterface) => {
                 <Circle style={{ marginRight: "28px", color: (props.occupied ? "red" : "green") }}/>
                 {props.name}
             </Typography>
-            <div style={{ display: "grid" }}>
-                <Typography variant="body1">Status: {props.occupied ? "Ocupado" : "Livre"}</Typography>
-                <Typography variant="body1">Tempo em uso: 12h</Typography>
-                <Typography variant="body1">Total a pagar: R$ 27,45</Typography>
-                <Typography variant="body1">Comandas: 2</Typography>
+
+            <Table>
+                <TableBody>
+                    <TableRow sx={{ height: "30px" }}>
+                        <TableCell>
+                            <Typography variant="body1">Status:</Typography>
+                        </TableCell>
+                        <TableCell>
+                            {props.occupied ? "Ocupado" : "Livre"}
+                        </TableCell>
+                    </TableRow>
+                    <TableRow sx={{ height: "30px" }}>
+                        <TableCell>
+                            <Typography variant="body1">Tempo em uso:</Typography>
+                        </TableCell>
+                        <TableCell>
+                            4 Horas
+                        </TableCell>
+                    </TableRow>
+                    <TableRow sx={{ height: "30px" }}>
+                        <TableCell>
+                            <Typography variant="body1">Total a pagar:</Typography>
+                        </TableCell>
+                        <TableCell>
+                            R$ 27.31
+                        </TableCell>
+                    </TableRow>
+                    <TableRow sx={{ height: "30px" }}>
+                        <TableCell>
+                            <Typography variant="body1">Comandas:</Typography>
+                        </TableCell>
+                        <TableCell>
+                            2
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+
+            <FormControl>
+                <Select
+                    style={{ width: "120px" }}
+                    >
+                    <MenuItem value={10}>Livre.</MenuItem>
+                    <MenuItem value={10}>Ocupada.</MenuItem>
+                </Select>
+            </FormControl>
+
+            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "12px" }}>
+
+                <Button style={{ backgroundColor: "blue", color: "white" }}>
+                    Concluir
+                </Button>
+                <Button style={{ backgroundColor: "red", color: "white" }}>
+                    Cancelar
+                </Button>
             </div>
         </Card>
     );
