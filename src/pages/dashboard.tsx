@@ -16,17 +16,22 @@ import {
 
 import TableContainer from '@mui/material/TableContainer';
 
+interface Tab {
+    customer_name: string;
+    bill: number;
+}
+
 interface TableInterface {
-    name: string;
-    occupied: boolean;
+    table_name: string;
+    tabs: Tab[]; // If tabs.size() > 0, then the table is occupied
 }
 
 const TableComponent = (props: TableInterface) => {
     return(
         <Card style={{ padding: "48px", borderRadius: "12px", backgroundColor:"#abd5e2" }}>
             <Typography variant="h4" style={{ display: "flex", fontWeight: 600, alignItems: "center", justifyContent: "center", marginBottom: "12px" }}>
-                <Circle style={{ marginRight: "28px", color: (props.occupied ? "red" : "green") }}/>
-                {props.name}
+                <Circle style={{ marginRight: "28px", color: (props.tabs.length>0) ? "red" : "green" }}/>
+                {props.table_name}
             </Typography>
 
             <Table>
@@ -36,7 +41,7 @@ const TableComponent = (props: TableInterface) => {
                             <Typography variant="body1">Status:</Typography>
                         </TableCell>
                         <TableCell>
-                            {props.occupied ? "Ocupado" : "Livre"}
+                            {(props.tabs.length>0) ? "Ocupado" : "Livre"}
                         </TableCell>
                     </TableRow>
                     <TableRow sx={{ height: "30px" }}>
@@ -49,7 +54,7 @@ const TableComponent = (props: TableInterface) => {
                     </TableRow>
                     <TableRow sx={{ height: "30px" }}>
                         <TableCell>
-                            <Typography variant="body1">Total a pagar:</Typography>
+                            <Typography variant="body1">Conta:</Typography>
                         </TableCell>
                         <TableCell>
                             R$ 27.31
@@ -91,36 +96,36 @@ const TableComponent = (props: TableInterface) => {
 export const DashboardPage = () => {
     const tables: TableInterface[] = [
         {
-            name: "Mesa 1",
-            occupied: true,
+            table_name: "Mesa 1",
+            tabs: [{customer_name: "John Doe", bill: 22.10}],
         },
         {
-            name: "Mesa 2",
-            occupied: true,
+            table_name: "Mesa 2",
+            tabs: [{customer_name: "John Doe", bill: 22.10}],
         },
         {
-            name: "Mesa 3",
-            occupied: false,
+            table_name: "Mesa 3",
+            tabs: [{customer_name: "John Doe", bill: 22.10}],
         },
         {
-            name: "Mesa 4",
-            occupied: true,
+            table_name: "Mesa 4",
+            tabs: [{customer_name: "John Doe", bill: 22.10}],
         },
         {
-            name: "Mesa 5",
-            occupied: false,
+            table_name: "Mesa 5",
+            tabs: [{customer_name: "John Doe", bill: 22.10}],
         },
         {
-            name: "Mesa 6",
-            occupied: true,
+            table_name: "Mesa 6",
+            tabs: [{customer_name: "John Doe", bill: 22.10}],
         },
         {
-            name: "Mesa 7",
-            occupied: true,
+            table_name: "Mesa 7",
+            tabs: [{customer_name: "John Doe", bill: 22.10}],
         },
         {
-            name: "Mesa 8",
-            occupied: false,
+            table_name: "Mesa 8",
+            tabs: [{customer_name: "John Doe", bill: 22.10}],
         },
     ];
 
@@ -144,7 +149,7 @@ export const DashboardPage = () => {
                 {tables.map((table) => {
                     return(
                         <Grid xs={8} md={2}>
-                            <TableComponent name={table.name} occupied={table.occupied} />
+                            <TableComponent table_name={table.table_name} tabs={table.tabs} />
                         </Grid>
                     );
                 })}
